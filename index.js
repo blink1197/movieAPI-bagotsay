@@ -9,7 +9,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
+app.use(    // Allow access from anywhere for now
+    cors({
+        origin: "*",
+        // origin: allowedOrigins,
+        //credentials: true,
+    })
+);
 
 //MongoDB database
 mongoose.connect("mongodb+srv://bagotsaycg_db_user:Q4kjVikciFrKip3U@movieapp.uymp8ml.mongodb.net/movie-app-db?appName=MovieApp");

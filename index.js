@@ -23,6 +23,11 @@ const userRoutes = require("./routes/user.routes.js");
 app.use("/movies", movieRoutes);
 app.use("/users", userRoutes);
 
+// For UptimeRobot Monitoring DO NOT DELETE
+app.get('/ping', (req, res) => {
+    res.status(200).json({ status: 'ok', time: new Date().toISOString() });
+});
+
 if (require.main === module) {
     app.listen(process.env.PORT || port, () => {
         console.log(`API is now online on port ${process.env.PORT || port}`)

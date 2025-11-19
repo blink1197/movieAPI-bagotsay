@@ -56,3 +56,16 @@ module.exports.loginUser = async (req, res, next) => {
         next(error);
     }
 }
+
+module.exports.getProfile = async (req, res, next) => {
+    try {
+        // Fetch user info from db
+        const user = await User.findById(req.user.id).select("-password");
+        if (!user) throw new AppError("User not found", 404)
+
+        // Send user details
+        res.status(200).json(user);
+    } catch (error) {
+        next(error);
+    }
+};

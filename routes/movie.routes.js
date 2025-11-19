@@ -5,9 +5,9 @@ const { verify, verifyAdmin } = require("../middleware/auth.js");
 
 const router = express.Router();
 
-router.get("/getMovies", verify, getMovies);
+router.get("/getMovies", getMovies);
 router.post("/addMovie", verify, verifyAdmin, addMovie);
-router.get("/getMovie/:movieId", verify, getMovieById);
+router.get("/getMovie/:movieId", getMovieById);
 router.patch("/updateMovie/:movieId", verify, verifyAdmin, updateMovie);
 router.patch("/addComment/:movieId", verify, addComment);
 router.get("/getComments/:movieId", verify, getComments);

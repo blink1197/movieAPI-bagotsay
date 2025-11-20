@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const { errorHandler } = require("./middleware/errorHandler.js");
 
 const port = 4000;
 
@@ -34,10 +35,17 @@ app.get('/ping', (req, res) => {
     res.status(200).json({ status: 'ok', time: new Date().toISOString() });
 });
 
+
+app.use(errorHandler);
+
+
 if (require.main === module) {
     app.listen(process.env.PORT || port, () => {
         console.log(`API is now online on port ${process.env.PORT || port}`)
     });
 }
+
+
+
 
 module.exports = { app, mongoose };

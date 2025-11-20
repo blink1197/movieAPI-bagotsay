@@ -32,14 +32,6 @@ module.exports.verify = (req, res, next) => {
 
 
 module.exports.verifyAdmin = (req, res, next) => {
-
-    if (req.user.isAdmin) next();
-
-    return res.status(401).json({ auth: "Failed", message: "No token provided" });
-};
-
-
-module.exports.verifyAdmin = (req, res, next) => {
     if (req.user.isAdmin) {
         next();
     }
